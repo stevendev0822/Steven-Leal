@@ -1,16 +1,3 @@
-<p align="center" width="100%">
-    <img height="100" src="https://github.com/stevenpiao0822/developer-portfolio/assets/77630868/c0064908-cd5f-4751-a77c-eba90a62b55c">
-</p>
-
----
-
-# Demo :movie_camera:
-
-![](./public/image/screen.png)
-
-## View live preview [here](https://abusaid.netlify.app/).
-
----
 
 ## Table of Contents :scroll:
 
@@ -110,19 +97,14 @@ export const personalData = {
   designation: "Full-Stack Web and Blockchain Developer",
   description: "An experienced Full Stack developer with blockchain experience, who likes challenges. Had the opportunity to work on various fields of the software engineering, including Frontend and Backend development, CI/CD pipelines, Blockchain Smart Contract development and Web3 integration. Always trying to overcome challenging situations, while continuous learning and continuous development in each day, without skipping.",
   email: "stevenpiao0822@gmail.com",
-  // phone: "+8801608797655",
   address: "Dallas, Texas",
   github: "https://github.com/stevenpiao0822",
-  // facebook: "https://www.facebook.com/abusaid.riyaz/",
   linkedIn: "https://www.linkedin.com/in/steven-piao-05933b2b7/",
-  // twitter: "https://twitter.com/stevenpiao0822",
-  // stackOverflow: "https://stackoverflow.com/users/16840768/abu-said",
-  // leetcode: "https://leetcode.com/said3812/",
   devUsername: "stevenpiao0822",
   resume: "https://drive.google.com/file/d/1rOVbm8-lSt0CNOFGQcB7ZLHTrymAJcV-/view?usp=sharing",
 };
 
-
+```
 ---
 
 # Packages Used :package:
