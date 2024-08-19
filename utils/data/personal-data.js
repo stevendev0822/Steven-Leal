@@ -17,3 +17,4 @@ export const personalData = {
   resume: "https://drive.google.com/file/d/11RzK1i9-vYtCOJY1xAllS3hpY0vO7wl5/view?usp=sharing"
 
 }
+
