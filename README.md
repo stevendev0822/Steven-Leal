@@ -101,7 +101,6 @@ export const personalData = {
   github: "https://github.com/BTC415",
   linkedIn: "https://www.linkedin.com/in/steven-piao-05933b2b7/",
   devUsername: "stevenpiao0822",
-  // resume: "https://drive.google.com/file/d/1rOVbm8-lSt0CNOFGQcB7ZLHTrymAJcV-/view?usp=sharing",
   resume: "https://drive.google.com/file/d/11RzK1i9-vYtCOJY1xAllS3hpY0vO7wl5/view?usp=sharing"
 };
 
