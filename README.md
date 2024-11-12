@@ -99,7 +99,7 @@ export const personalData = {
   email: "stevenpiao0822@gmail.com",
   address: "Mesquite, Texas",
   github: "https://github.com/BTC415",
-  linkedIn: "https://www.linkedin.com/in/steven-piao-05933b2b7/",
+  linkedIn: "https://www.linkedin.com/in/steven-leal-183252338/",
   devUsername: "steven-dev",
   resume: "https://drive.google.com/file/d/11RzK1i9-vYtCOJY1xAllS3hpY0vO7wl5/view?usp=sharing"
 };
