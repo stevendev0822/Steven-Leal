@@ -92,7 +92,7 @@ Eg:
 
 ```javascript
 export const personalData = {
-  name: "Steven Piao",
+  name: "Steven Leal",
   profile: "/profile.png",
   designation: "Full-Stack Web and Blockchain Developer",
   description: "An experienced Full Stack developer with blockchain experience, who likes challenges. Had the opportunity to work on various fields of the software engineering, including Frontend and Backend development, CI/CD pipelines, Blockchain Smart Contract development and Web3 integration. Always trying to overcome challenging situations, while continuous learning and continuous development in each day, without skipping.",

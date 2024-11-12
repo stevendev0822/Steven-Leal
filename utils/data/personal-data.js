@@ -1,8 +1,8 @@
 export const personalData = {
-  name: "Steven Piao",
+  name: "Steven Leal",
   profile: '/profile.jpg',
   designation: "Software Developer",
-  description: "An experienced Full Stack developer with blockchain experience, who likes challenges. Had the opportunity to work on various fields of the software engineering, including Frontend and Backend development, CI/CD pipelines, Blockchain Smart Contract development and Web3 integration. Always trying to overcome challenging situations, while continuous learning and continuous development in each day, without skipping.",
+  description: "A critical and forward thinking blockchain engineer with over 6 years of experience in DeFi, NFT marketplace development and supply chain management through full-stack development, web3 integration and smart contract development. Not just a developer, but a critical and forward-thinking engineer for the future of Real Word powered by blockchain. Always trying to follow best practices in development, improve user experience, optimize performance and efficiency, and respect user feedback. Strongly have the mindset of 'Your behavior, not your idea will change the world.'",
   email: 'stevenpiao0822@gmail.com',
   phone: '+14706212757',
   address: 'Dallas, Texas, US',
@@ -11,10 +11,10 @@ export const personalData = {
   linkedIn: "https://www.linkedin.com/in/steven-piao-05933b2b7/",
   // twitter: 'https://twitter.com/stevenpiao.dev/',
   instagram: "https://www.instagram.com/stevenpiao.dev/",
-  // stackOverflow: 'https://stackoverflow.com/users/16840768/stevenpiao.dev',
+  stackOverflow: 'https://stackoverflow.com/users/28203313/steven',
   // leetcode: "https://leetcode.com/stevenpiao.dev/",
-  devUsername: "stevenpiao0822",
-  resume: "https://drive.google.com/file/d/12d0PdphziU26pjBIHT7R7TacRCnWeYST/view?usp=sharing"
+  devUsername: "steven-dev",
+  resume: "https://drive.google.com/file/d/1VY1MFSjbt6eMIn63jBhD4wiER6CeDST5/view?usp=sharing"
 
 }
 

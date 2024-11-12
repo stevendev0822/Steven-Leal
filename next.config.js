@@ -13,7 +13,7 @@ module.exports = {
       },
       {
         protocol: 'https',
-        hostname: 'media.dev.to',
+        hostname: 'media2.dev.to',
         pathname: '**',
       },
     ],

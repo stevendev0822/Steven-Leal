@@ -5,12 +5,12 @@ export const educations = [
     duration: "2014 - 2018",
     institution: "Hebei University of Technology",
   },
-  // {
-  //   id: 2,
-  //   title: "Higher Secondary Certificate",
-  //   duration: "2018 - 2020",
-  //   institution: "Noakhali Islamia Kamil Madrasah",
-  // },
+  {
+    id: 2,
+    title: "The Complete Web developer to bootcamp",
+    duration: "2022 Dec",
+    institution: "Udemy",
+  }
   // {
   //   id: 3,
   //   title: "Secondary School Certificate",

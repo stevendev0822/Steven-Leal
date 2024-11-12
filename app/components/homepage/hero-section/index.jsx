@@ -115,7 +115,7 @@ function HeroSection() {
               <div>
                 <span className="ml-4 lg:ml-8 mr-2 text-white">name:</span>
                 <span className="text-gray-400">{`'`}</span>
-                <span className="text-amber-300">Steven Piao</span>
+                <span className="text-amber-300">Steven Leal</span>
                 <span className="text-gray-400">{`',`}</span>
               </div>
               <div className="ml-4 lg:ml-8 mr-2">
@@ -127,9 +127,9 @@ function HeroSection() {
                 <span className="text-gray-400">{"', '"}</span>
                 <span className="text-amber-300">Redux</span>
                 <span className="text-gray-400">{"', '"}</span>
-                <span className="text-amber-300">Express</span>
+                <span className="text-amber-300">Nodejs</span>
                 <span className="text-gray-400">{"', '"}</span>
-                <span className="text-amber-300">Web3JS</span>
+                <span className="text-amber-300">EthersJS</span>
                 <span className="text-gray-400">{"', '"}</span>
                 <span className="text-amber-300">Solidity</span>
                 <span className="text-gray-400">{"', '"}</span>
@@ -137,7 +137,7 @@ function HeroSection() {
                 <span className="text-gray-400">{"', '"}</span>
                 <span className="text-amber-300">Hardhat</span>
                 <span className="text-gray-400">{"', '"}</span>
-                <span className="text-amber-300">Remix</span>
+                <span className="text-amber-300">Rust</span>
                 <span className="text-gray-400">{"'],"}</span>
               </div>
               <div>

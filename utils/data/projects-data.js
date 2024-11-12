@@ -1,28 +1,28 @@
-import Ayla from '/public/image/ayla.jpg';
-import MarsNext from '/public/image/mars-next.png';
+import casino from '/public/image/VVSL.png';
+import ironwill from '/public/image/ironwill.png';
 import RubyExchange from '/public/image/ruby-exchange.png';
-import HeroSwap from '/public/image/hero-swap.png';
+import NYWNFT from '/public/image/nyw-nft.png';
 
 export const projectsData = [
     {
         id: 1,
-        name: 'MarsNext',
-        description: "Defi Dapps, Defi Yield Farming platforms.",
-        tools: ['Reactjs', 'Typescript', 'MUI', 'Web3js', 'Solidity', 'GraphQL'],
-        role: 'Lead Developer',
+        name: 'IRONWILL',
+        description: "ERC20 FICCO token presale on Ethereum blockchain.",
+        tools: ['Nextjs', 'Typescript', 'TailwindCSS', 'Ethersjs', 'Wagmi', 'Rainbow Kit', 'Solidity', 'Hardhat'],
+        role: 'Technical Co-founder',
         code: '',
-        demo: 'https://www.marsnext.io/',
-        image: MarsNext
+        demo: 'https://www.ironwill.io/',
+        image: ironwill
     },
     {
         id: 2,
-        name: 'HeroSwap',
-        description: 'Decentralized Exchanges(DEXs).',
-        tools: ['NextJS', 'Tailwind CSS', "TypeScript", "Ethers.js", "Wagmi", "Solidity", "GraphQL", "SubGraph", "Apollo", "Cross-chain"],
+        name: 'NYW NFT Marketplace',
+        description: 'NFT marketplace on Ethereum blockchain.',
+        tools: ['NextJS', 'Tailwind CSS', "TypeScript", "Nodejs", "ExpressJS", "SubGraph", "GraphQL", "Ethers.js", "Wagmi", "Solidity", "Hardhat"],
         role: 'Senior Blockchain Developer',
         code: '',
-        demo: 'https://heroswap.com/',
-        image: HeroSwap,
+        demo: 'https://www.minato-yellowflash.com/',
+        image: NYWNFT,
     },
     {
         id: 3,
@@ -36,12 +36,12 @@ export const projectsData = [
     },
     {
         id: 4,
-        name: 'Newsroom Management',
-        description: "A newspaper management dashboard application called Newsroom Management.",
-        tools: ['NextJS', 'Material UI', 'Redux', 'Sun Editor', "Calendar"],
+        name: 'Bollygaming casino games',
+        description: "A B2B casino gaming platform emphasizing free-to-play mechanics for new users.",
+        tools: ['NextJS', 'Material UI', 'Redux', 'Typescript', "Pixijs", "Laravel", "MongoDB", "Socket.io"],
         code: '',
-        demo: 'https://www.aylalive.com/',
-        image: Ayla,
+        demo: 'https://lobbyuat.bollygaming.games/slot/mbsl/?token=c42ca54b-0e44-4348-95c5-f0c058334847',
+        image: casino,
         role: 'Full Stack Developer',
     }
 ];
