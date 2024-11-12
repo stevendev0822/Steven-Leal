@@ -4,7 +4,7 @@ import { personalData } from "@/utils/data/personal-data";
 import Image from "next/image";
 import Link from "next/link";
 import { BsGithub, BsLinkedin } from "react-icons/bs";
-import { FaFacebook, FaTwitterSquare, FaInstagram } from "react-icons/fa";
+import { FaFacebook, FaTwitterSquare, FaInstagram, FaRegSmileWink } from "react-icons/fa";
 import { MdDownload } from "react-icons/md";
 import { RiContactsFill } from "react-icons/ri";
 import { SiLeetcode } from "react-icons/si";
@@ -59,6 +59,13 @@ function HeroSection() {
               className="transition-all text-pink-500 hover:scale-125 duration-300"
             >
               <FaTwitterSquare size={30} />
+            </Link>
+            <Link
+              href={personalData.linktree}
+              target='_blank'
+              className="transition-all text-pink-500 hover:scale-125 duration-300"
+            >
+              <FaRegSmileWink size={30} />
             </Link>
             {/* <Link
               href={personalData.facebook}
