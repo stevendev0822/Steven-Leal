@@ -17,7 +17,7 @@ function ContactWithCaptcha() {
     email: '',
     message: '',
   });
-  const [captcha, setCaptcha] = useState(null);
+  // const [captcha, setCaptcha] = useState(null);
   const [error, setError] = useState({
     email: false,
     required: false,
@@ -36,16 +36,6 @@ function ContactWithCaptcha() {
     //   return;
     // };
 
-    // Get reCAPTCHA token
-    const token = await recaptchaRef.current.executeAsync();
-
-    // Add token to request payload
-    const payload = {
-      ...input,
-      recaptchaToken: token
-    };
-
-    console.log("captcha---->", captcha);
     if (!input.email || !input.message || !input.name) {
       setError({ ...error, required: true });
       return;
@@ -55,14 +45,25 @@ function ContactWithCaptcha() {
       setError({ ...error, required: false });
     };
 
-    console.log("input---->", input);
-    const serviceID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
-    const templateID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
-    const options = { publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY };
-
-    console.log("options---->", options);
-
     try {
+      // Get reCAPTCHA token
+      const token = await recaptchaRef.current.executeAsync();
+
+      // Add token to request payload
+      const payload = {
+        ...input,
+        recaptchaToken: token
+      };
+
+      // console.log("captcha---->", captcha);
+
+      console.log("input---->", input);
+      const serviceID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+      const templateID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+      const options = { publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY };
+
+      console.log("options---->", options);
+
       const res = await emailjs.send(serviceID, templateID, payload, options);
       const teleRes = await axios.post(`${process.env.NEXT_PUBLIC_APP_URL}/api/contact`, input);
 
@@ -73,13 +74,11 @@ function ContactWithCaptcha() {
           email: '',
           message: '',
         });
-        setCaptcha(null);
+        recaptchaRef.current.reset();
       };
     } catch (error) {
       toast.error(error?.text || error);
-    } finally {
-      recaptchaRef.current.reset();
-    }
+    } 
   };
 
   return (
@@ -140,7 +139,8 @@ function ContactWithCaptcha() {
           <ReCAPTCHA
             ref={recaptchaRef}
             sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
-            // onChange={(code) => setCaptcha(code)}
+            size="invisible"
+          // onChange={(code) => setCaptcha(code)}
           />
           <div className="flex flex-col items-center gap-2">
             {error.required &&
