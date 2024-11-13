@@ -9,9 +9,8 @@ import { TbMailForward } from "react-icons/tb";
 import { toast } from 'react-toastify';
 
 function ContactWithCaptcha() {
-  const recaptchaRef = useRef(null);
-
   emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY);
+  const recaptchaRef = useRef(null);
   const [input, setInput] = useState({
     name: '',
     email: '',
@@ -31,19 +30,13 @@ function ContactWithCaptcha() {
 
   const handleSendMail = async (e) => {
     e.preventDefault();
-    // if (!captcha) {
-    //   toast.error('Please complete the captcha!');
-    //   return;
-    // };
 
     if (!input.email || !input.message || !input.name) {
       setError({ ...error, required: true });
       return;
     } else if (error.email) {
       return;
-    } else {
-      setError({ ...error, required: false });
-    };
+    }
 
     try {
       // Get reCAPTCHA token
@@ -66,6 +59,9 @@ function ContactWithCaptcha() {
 
       const res = await emailjs.send(serviceID, templateID, payload, options);
       const teleRes = await axios.post(`${process.env.NEXT_PUBLIC_APP_URL}/api/contact`, input);
+
+      console.log("res---->", res);
+      console.log("teleRes---->", teleRes);
 
       if (res.status === 200 || teleRes.status === 200) {
         toast.success('Message sent successfully!');
