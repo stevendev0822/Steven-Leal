@@ -9,6 +9,7 @@ import { TbMailForward } from "react-icons/tb";
 import { toast } from 'react-toastify';
 
 function ContactWithCaptcha() {
+  emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY);
   const [input, setInput] = useState({
     name: '',
     email: '',
@@ -33,6 +34,7 @@ function ContactWithCaptcha() {
       return;
     };
 
+    console.log("captcha---->", captcha);
     if (!input.email || !input.message || !input.name) {
       setError({ ...error, required: true });
       return;
@@ -42,9 +44,12 @@ function ContactWithCaptcha() {
       setError({ ...error, required: false });
     };
 
+    console.log("input---->", input);
     const serviceID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
     const templateID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
     const options = { publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY };
+
+    console.log("options---->", options);
 
     try {
       const res = await emailjs.send(serviceID, templateID, userInput, options);
@@ -52,7 +57,7 @@ function ContactWithCaptcha() {
 
       if (res.status === 200 || teleRes.status === 200) {
         toast.success('Message sent successfully!');
-        setUserInput({
+        setInput({
           name: '',
           email: '',
           message: '',
