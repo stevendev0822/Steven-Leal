@@ -42,8 +42,9 @@ function ContactWithoutCaptcha() {
 
     try {
       const res = await emailjs.send(serviceID, templateID, userInput, options);
+      console.log("res------>", res);
       const teleRes = await axios.post(`${process.env.NEXT_PUBLIC_APP_URL}/api/contact`, userInput);
-
+      console.log("teleRes------>", teleRes);
       if (res.status === 200 || teleRes.status === 200) {
         toast.success('Message sent successfully!');
         setUserInput({
