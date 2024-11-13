@@ -1,21 +1,23 @@
 "use client";
-
+// @flow strict
 import { isValidEmail } from '@/utils/check-email';
 import emailjs from '@emailjs/browser';
 import axios from 'axios';
 import { useState, useRef } from 'react';
-import ReCAPTCHA from 'react-google-recaptcha';
+import ReCAPTCHA from "react-google-recaptcha";
 import { TbMailForward } from "react-icons/tb";
 import { toast } from 'react-toastify';
 
 function ContactWithCaptcha() {
-  emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY);
   const recaptchaRef = useRef(null);
+
+  emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY);
   const [input, setInput] = useState({
     name: '',
     email: '',
     message: '',
   });
+  const [captcha, setCaptcha] = useState(null);
   const [error, setError] = useState({
     email: false,
     required: false,
@@ -29,27 +31,40 @@ function ContactWithCaptcha() {
 
   const handleSendMail = async (e) => {
     e.preventDefault();
+    if (!captcha) {
+      toast.error('Please complete the captcha!');
+      return;
+    };
 
+    // Get reCAPTCHA token
+    const token = await recaptchaRef.current.executeAsync();
+
+    // Add token to request payload
+    const payload = {
+      ...input,
+      recaptchaToken: token
+    };
+
+    console.log("captcha---->", captcha);
     if (!input.email || !input.message || !input.name) {
       setError({ ...error, required: true });
       return;
     } else if (error.email) {
       return;
-    }
+    } else {
+      setError({ ...error, required: false });
+    };
+
+    console.log("input---->", input);
+    const serviceID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+    const templateID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+    const options = { publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY };
+
+    console.log("options---->", options);
 
     try {
-      const token = await recaptchaRef.current.executeAsync();
-      const payload = {
-        ...input,
-        recaptchaToken: token
-      };
-
-      const serviceID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
-      const templateID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
-      const options = { publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY };
-
       const res = await emailjs.send(serviceID, templateID, payload, options);
-      const teleRes = await axios.post(`${process.env.NEXT_PUBLIC_APP_URL}/api/contact`, payload);
+      const teleRes = await axios.post(`${process.env.NEXT_PUBLIC_APP_URL}/api/contact`, input);
 
       if (res.status === 200 || teleRes.status === 200) {
         toast.success('Message sent successfully!');
@@ -58,10 +73,12 @@ function ContactWithCaptcha() {
           email: '',
           message: '',
         });
-        recaptchaRef.current.reset();
-      }
+        setCaptcha(null);
+      };
     } catch (error) {
       toast.error(error?.text || error);
+    } finally {
+      recaptchaRef.current.reset();
     }
   };
 
@@ -122,8 +139,8 @@ function ContactWithCaptcha() {
           </div>
           <ReCAPTCHA
             ref={recaptchaRef}
-            size="invisible"
             sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+            // onChange={(code) => setCaptcha(code)}
           />
           <div className="flex flex-col items-center gap-2">
             {error.required &&
@@ -144,6 +161,6 @@ function ContactWithCaptcha() {
       </div>
     </div>
   );
-}
+};
 
 export default ContactWithCaptcha;
