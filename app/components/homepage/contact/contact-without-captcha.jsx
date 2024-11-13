@@ -1,12 +1,14 @@
 "use client";
 // @flow strict
 import { isValidEmail } from '@/utils/check-email';
+import emailjs from '@emailjs/browser';
 import axios from 'axios';
 import { useState } from 'react';
 import { TbMailForward } from "react-icons/tb";
 import { toast } from 'react-toastify';
 
 function ContactWithoutCaptcha() {
+  emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY);
   const [error, setError] = useState({ email: false, required: false });
   const [userInput, setUserInput] = useState({
     name: '',
@@ -31,9 +33,12 @@ function ContactWithoutCaptcha() {
       setError({ ...error, required: false });
     };
 
+    console.log("userInput1------>", userInput);
     const serviceID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
     const templateID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
     const options = { publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY };
+
+    console.log("options------>", options);
 
     try {
       const res = await emailjs.send(serviceID, templateID, userInput, options);
