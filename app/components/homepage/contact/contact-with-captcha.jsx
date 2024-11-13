@@ -31,10 +31,10 @@ function ContactWithCaptcha() {
 
   const handleSendMail = async (e) => {
     e.preventDefault();
-    if (!captcha) {
-      toast.error('Please complete the captcha!');
-      return;
-    };
+    // if (!captcha) {
+    //   toast.error('Please complete the captcha!');
+    //   return;
+    // };
 
     // Get reCAPTCHA token
     const token = await recaptchaRef.current.executeAsync();
