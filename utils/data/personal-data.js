@@ -8,14 +8,12 @@ export const personalData = {
   address: 'Mesquite, Texas, US',
   github: 'https://github.com/BTC415',
   // facebook: 'https://www.facebook.com/stevenpiao.dev/',
-  linktree: "https://linktr.ee/stevenpiao.dev",
+  linktree: "https://linktr.ee/stevendev0822",
   linkedIn: "https://www.linkedin.com/in/steven-leal-183252338/",
   twitter: 'https://x.com/stevendev0822',
   instagram: "https://www.instagram.com/stevenpiao.dev/",
   stackOverflow: 'https://stackoverflow.com/users/28203313/steven',
   // leetcode: "https://leetcode.com/stevenpiao.dev/",
-  devUsername: "steven-dev",
+  devUsername: "stevendev0822",
   resume: "https://drive.google.com/file/d/1Gzi0FDWVVjHirZMWzYpY3odHZ-ld60Gz/view?usp=sharing"
-
 }
-

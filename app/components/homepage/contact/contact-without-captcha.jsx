@@ -33,18 +33,14 @@ function ContactWithoutCaptcha() {
       setError({ ...error, required: false });
     };
 
-    console.log("userInput1------>", userInput);
     const serviceID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
     const templateID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
     const options = { publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY };
 
-    console.log("options------>", options);
 
     try {
       const res = await emailjs.send(serviceID, templateID, userInput, options);
-      console.log("res------>", res);
       const teleRes = await axios.post(`${process.env.NEXT_PUBLIC_APP_URL}/api/contact`, userInput);
-      console.log("teleRes------>", teleRes);
       if (res.status === 200 || teleRes.status === 200) {
         toast.success('Message sent successfully!');
         setUserInput({
