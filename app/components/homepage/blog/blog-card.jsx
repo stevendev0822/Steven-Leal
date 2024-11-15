@@ -44,7 +44,7 @@ function BlogCard({ blog }) {
           {`${blog.reading_time_minutes} Min Read`}
         </p>
         <p className='text-sm lg:text-base text-[#d3d8e8] pb-3 lg:pb-6 line-clamp-3 mb-8'>
-          {blog.description}
+          {blog.description.replace(/^Introduction\s+/, '')}
         </p>
         <div className="absolute bottom-4 left-2">
           <Link target='_blank' href={blog.url}>
