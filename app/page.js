@@ -26,7 +26,7 @@ async function getData() {
   }
 
   const data = await res.json();
-  const filtered = data.filter((item) => item?.cover_image).sort((a, b) => new Date(b.published_at) - new Date(a.published_at));
+  const filtered = data.filter((item) => item?.cover_image).sort((b, a) => new Date(b.published_at) - new Date(a.published_at));
   return filtered;
 }
 
