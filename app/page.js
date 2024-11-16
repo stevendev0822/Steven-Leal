@@ -15,7 +15,7 @@ async function getData() {
     `https://dev.to/api/articles?username=${personalData.devUsername}`,
     {
       next: {
-        revalidate: 3600 // Revalidate every hour
+        revalidate: 60 // Revalidate every hour
       },
       cache: 'force-cache'
     }
@@ -32,7 +32,7 @@ async function getData() {
 
 export default async function Home() {
   const blogs = await getData();
-
+  
   return (
     <>
       <HeroSection />

@@ -4,14 +4,20 @@ import { personalData } from "@/utils/data/personal-data";
 import BlogCard from "../components/homepage/blog/blog-card";
 
 async function getBlogs() {
-  const res = await fetch(`https://dev.to/api/articles?username=${personalData.devUsername}`)
+  const res = await fetch(`https://dev.to/api/articles?username=${personalData.devUsername}`, {
+    next: {
+      revalidate: 60 // Revalidate every hour
+    },
+    cache: 'force-cache'
+  })
 
   if (!res.ok) {
     throw new Error('Failed to fetch data')
   }
 
   const data = await res.json();
-  return data;
+  const filtered = data.filter((item) => item?.cover_image).sort((b, a) => new Date(b.published_at) - new Date(a.published_at));
+  return filtered;
 };
 
 async function page() {
