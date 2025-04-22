@@ -8,7 +8,6 @@ import Navbar from "./components/navbar";
 import "./css/card.scss";
 import "./css/globals.scss";
 const inter = Inter({ subsets: ["latin"] });
-// const ScrollToTop = dynamic(() => import('../app/components/helper/scroll-to-top'), { ssr: false });
 
 export const metadata = {
   title: "Portfolio of Steven Leal - Software Developer",
@@ -24,11 +23,11 @@ export default function RootLayout({ children }) {
         <main className="min-h-screen relative mx-auto px-6 sm:px-12 lg:max-w-[70rem] xl:max-w-[76rem] 2xl:max-w-[92rem] text-white">
           <Navbar />
           {children}
-          {/* <ScrollToTop /> */}
         </main>
         <Footer />
+        {/* Move GoogleTagManager here, after the content */}
+        <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM || ''} />
       </body>
-      <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM} />
     </html>
   );
 }
