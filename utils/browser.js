@@ -1,4 +1,4 @@
-export const isBrowser = () => typeof window !== 'undefined';
+export const isBrowser = () => window !== undefined;
 
 // Safe document access
 export const safeDocument = {
