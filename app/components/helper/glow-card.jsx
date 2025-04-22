@@ -1,5 +1,6 @@
 "use client"
 import { useEffect, useState } from 'react';
+import { isBrowser, safeDocument } from '@/utils/browser';
 
 const GlowCard = ({ children, identifier }) => {
   const [isMounted, setIsMounted] = useState(false);
@@ -9,10 +10,11 @@ const GlowCard = ({ children, identifier }) => {
   }, []);
 
   useEffect(() => {
-    if (!isMounted) return;
+    if (!isMounted || !isBrowser()) return;
 
-    const CONTAINER = document.querySelector(`.glow-container-${identifier}`);
-    const CARDS = document.querySelectorAll(`.glow-card-${identifier}`);
+    const CONTAINER = safeDocument.querySelector(`.glow-container-${identifier}`);
+    const CARDS = safeDocument.querySelectorAll(`.glow-card-${identifier}`);
+    if (!CONTAINER || !CARDS.length) return;
 
     const CONFIG = {
       proximity: 40,
@@ -54,7 +56,7 @@ const GlowCard = ({ children, identifier }) => {
       }
     };
 
-    document.body.addEventListener('pointermove', UPDATE);
+    safeDocument.addEventListener('pointermove', UPDATE);
 
     const RESTYLE = () => {
       CONTAINER.style.setProperty('--gap', CONFIG.gap);
@@ -71,7 +73,7 @@ const GlowCard = ({ children, identifier }) => {
 
     // Cleanup event listener
     return () => {
-      document.body.removeEventListener('pointermove', UPDATE);
+      safeDocument.removeEventListener('pointermove', UPDATE);
     };
   }, [identifier, isMounted]);
 
