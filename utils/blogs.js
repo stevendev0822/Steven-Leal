@@ -5,7 +5,7 @@ async function getBlogs() {
       next: {
         revalidate: 60 
       },
-      cache: 'force-cache'
+    //   cache: 'force-cache'
     })
   
     if (!res.ok) {
