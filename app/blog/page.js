@@ -1,24 +1,6 @@
 // @flow strict
-
-import { personalData } from "@/utils/data/personal-data";
+import getBlogs from "@/utils/blogs";
 import BlogCard from "../components/homepage/blog/blog-card";
-
-async function getBlogs() {
-  const res = await fetch(`https://dev.to/api/articles?username=${personalData.devUsername}`, {
-    next: {
-      revalidate: 60 // Revalidate every hour
-    },
-    cache: 'force-cache'
-  })
-
-  if (!res.ok) {
-    throw new Error('Failed to fetch data')
-  }
-
-  const data = await res.json();
-  const filtered = data.filter((item) => item?.cover_image).sort((b, a) => new Date(b.published_at) - new Date(a.published_at));
-  return filtered;
-};
 
 async function page() {
   const blogs = await getBlogs();
@@ -38,7 +20,6 @@ async function page() {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-5 lg:gap-8 xl:gap-10">
         {
           blogs.map((blog, i) => (
-            blog?.cover_image &&
             <BlogCard blog={blog} key={i} />
           ))
         }
