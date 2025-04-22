@@ -1,6 +1,33 @@
-export const isBrowser = () => window !== undefined;
+export const isBrowser = () => typeof window !== 'undefined';
 
-// Safe document access
+export const safeWindow = {
+  scrollTo: (options) => {
+    if (isBrowser()) {
+      window.scrollTo(options);
+    }
+  },
+  get scrollY() {
+    if (isBrowser()) {
+      return window.scrollY;
+    }
+    return 0;
+  },
+  addEventListener: (event, handler, options) => {
+    if (isBrowser()) {
+      window.addEventListener(event, handler, options);
+      return true;
+    }
+    return false;
+  },
+  removeEventListener: (event, handler, options) => {
+    if (isBrowser()) {
+      window.removeEventListener(event, handler, options);
+      return true;
+    }
+    return false;
+  }
+};
+
 export const safeDocument = {
   querySelector: (selector) => {
     if (isBrowser()) {
@@ -24,35 +51,6 @@ export const safeDocument = {
   removeEventListener: (event, handler, options) => {
     if (isBrowser() && document.body) {
       document.body.removeEventListener(event, handler, options);
-      return true;
-    }
-    return false;
-  }
-};
-
-// Safe window access
-export const safeWindow = {
-  scrollTo: (options) => {
-    if (isBrowser()) {
-      window.scrollTo(options);
-    }
-  },
-  get scrollY() {
-    if (isBrowser()) {
-      return window.scrollY;
-    }
-    return 0;
-  },
-  addEventListener: (event, handler, options) => {
-    if (isBrowser()) {
-      window.addEventListener(event, handler, options);
-      return true;
-    }
-    return false;
-  },
-  removeEventListener: (event, handler, options) => {
-    if (isBrowser()) {
-      window.removeEventListener(event, handler, options);
       return true;
     }
     return false;

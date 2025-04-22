@@ -1,9 +1,12 @@
-"use client"
-import { useEffect, useState } from 'react';
-import { isBrowser, safeDocument } from '@/utils/browser';
+'use client';
+
+import { useEffect, useState, useRef } from 'react';
+import { isBrowser } from '@/utils/browser';
 
 const GlowCard = ({ children, identifier }) => {
   const [isMounted, setIsMounted] = useState(false);
+  const containerRef = useRef(null);
+  const cardsRef = useRef([]);
 
   useEffect(() => {
     setIsMounted(true);
@@ -12,8 +15,10 @@ const GlowCard = ({ children, identifier }) => {
   useEffect(() => {
     if (!isMounted || !isBrowser()) return;
 
-    const CONTAINER = safeDocument.querySelector(`.glow-container-${identifier}`);
-    const CARDS = safeDocument.querySelectorAll(`.glow-card-${identifier}`);
+    // Use refs instead of document queries
+    const CONTAINER = containerRef.current;
+    const CARDS = cardsRef.current;
+
     if (!CONTAINER || !CARDS.length) return;
 
     const CONFIG = {
@@ -27,8 +32,9 @@ const GlowCard = ({ children, identifier }) => {
 
     const UPDATE = (event) => {
       for (const CARD of CARDS) {
+        if (!CARD) continue;
+        
         const CARD_BOUNDS = CARD.getBoundingClientRect();
-
         if (
           event?.x > CARD_BOUNDS.left - CONFIG.proximity &&
           event?.x < CARD_BOUNDS.left + CARD_BOUNDS.width + CONFIG.proximity &&
@@ -49,14 +55,14 @@ const GlowCard = ({ children, identifier }) => {
           (Math.atan2(event?.y - CARD_CENTER[1], event?.x - CARD_CENTER[0]) *
             180) /
           Math.PI;
-
         ANGLE = ANGLE < 0 ? ANGLE + 360 : ANGLE;
-
         CARD.style.setProperty('--start', ANGLE + 90);
       }
     };
 
-    safeDocument.addEventListener('pointermove', UPDATE);
+    const handlePointerMove = (e) => UPDATE(e);
+
+    document.addEventListener('pointermove', handlePointerMove);
 
     const RESTYLE = () => {
       CONTAINER.style.setProperty('--gap', CONFIG.gap);
@@ -73,12 +79,22 @@ const GlowCard = ({ children, identifier }) => {
 
     // Cleanup event listener
     return () => {
-      safeDocument.removeEventListener('pointermove', UPDATE);
+      document.removeEventListener('pointermove', handlePointerMove);
     };
   }, [identifier, isMounted]);
 
+  // Initialize refs after component mounts
+  useEffect(() => {
+    if (isMounted && isBrowser()) {
+      cardsRef.current = Array.from(document.querySelectorAll(`.glow-card-${identifier}`));
+    }
+  }, [identifier, isMounted]);
+
   return (
-    <div className={`glow-container-${identifier} glow-container`}>
+    <div 
+      className={`glow-container-${identifier} glow-container`}
+      ref={containerRef}
+    >
       <article className={`glow-card glow-card-${identifier} h-fit cursor-pointer border border-[#2a2e5a] transition-all duration-300 relative bg-[#101123] text-gray-200 rounded-xl hover:border-transparent w-full`}>
         <div className="glows"></div>
         {children}

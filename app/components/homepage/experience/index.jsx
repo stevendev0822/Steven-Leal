@@ -1,5 +1,5 @@
 // @flow strict
-
+'use client'  
 import { experiences } from "@/utils/data/experience";
 import Image from "next/image";
 import dynamic from "next/dynamic";
@@ -7,7 +7,8 @@ import { BsPersonWorkspace } from "react-icons/bs";
 import AnimationLottie from "../../helper/animation-lottie";
 import experience from '/public/lottie/code.json';
 
-// const GlowCard = dynamic(() => import('../../helper/glow-card'), { ssr: false });
+// Uncomment this line to use GlowCard with dynamic import
+const GlowCard = dynamic(() => import('../../helper/glow-card'), { ssr: false });
 
 function Experience() {
   return (
@@ -42,8 +43,7 @@ function Experience() {
             <div className="flex flex-col gap-6">
               {
                 experiences.map(experience => (
-                  // <GlowCard key={experience.id} identifier={`experience-${experience.id}`}>
-                  <div key={experience.id}>
+                  <GlowCard key={experience.id} identifier={`experience-${experience.id}`}>
                     <div className="p-3 relative">
                       <Image
                         src="/blur-23.svg"
@@ -71,8 +71,7 @@ function Experience() {
                         </div>
                       </div>
                     </div>
-                  </div>
-                  // </GlowCard>
+                  </GlowCard>
                 ))
               }
             </div>

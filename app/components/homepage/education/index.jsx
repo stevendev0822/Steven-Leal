@@ -1,13 +1,14 @@
-// @flow strict
+'use client';
+
 import Image from "next/image";
 import dynamic from "next/dynamic";
-
 import { educations } from "@/utils/data/educations";
 import { BsPersonWorkspace } from "react-icons/bs";
-import AnimationLottie from "../../helper/animation-lottie";
+import AnimationLottie from "@/app/components/helper/animation-lottie";
 import lottieFile from '/public/lottie/study.json';
 
-// const GlowCard = dynamic(() => import('../../helper/glow-card'), { ssr: false });
+// Use dynamic import with ssr: false
+const GlowCard = dynamic(() => import('@/app/components/helper/glow-card'), { ssr: false });
 
 function Education() {
   return (
@@ -24,7 +25,6 @@ function Education() {
           <div className="h-[1px] bg-gradient-to-r from-transparent via-violet-500 to-transparent  w-full" />
         </div>
       </div>
-
       <div className="flex justify-center my-5 lg:py-8">
         <div className="flex  items-center">
           <span className="w-24 h-[2px] bg-[#1a1443]"></span>
@@ -34,7 +34,6 @@ function Education() {
           <span className="w-24 h-[2px] bg-[#1a1443]"></span>
         </div>
       </div>
-
       <div className="py-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
           <div className="flex justify-center items-start">
@@ -42,15 +41,11 @@ function Education() {
               <AnimationLottie animationPath={lottieFile} />
             </div>
           </div>
-
           <div>
             <div className="flex flex-col gap-6">
               {
                 educations.map(education => (
-                  // <GlowCard key={education.id} identifier={`education-${education.id}`}>
-                  <div key={education.id}>
-
-
+                  <GlowCard key={education.id} identifier={`education-${education.id}`}>
                     <div className="p-3 relative text-white">
                       <Image
                         src="/blur-23.svg"
@@ -76,8 +71,7 @@ function Education() {
                         </div>
                       </div>
                     </div>
-                  </div>
-                  // </GlowCard>
+                  </GlowCard>
                 ))
               }
             </div>
