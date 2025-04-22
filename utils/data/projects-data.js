@@ -2,6 +2,9 @@ import casino from '/public/image/VVSL.png';
 import ironwill from '/public/image/ironwill.png';
 import RubyExchange from '/public/image/ruby-exchange.png';
 import NYWNFT from '/public/image/nyw-nft.png';
+import SolanaWalletTracking from '/public/image/Solana-Wallet-Tracking-Bot.gif';
+import EVMWalletTracking from '/public/image/EVM-Wallet-Tracking-Bot.gif';
+import EVMTokenAnalysis from '/public/image/EVM-Token-Analysis-Bot.gif';
 
 export const projectsData = [
     {

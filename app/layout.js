@@ -1,13 +1,14 @@
 import { GoogleTagManager } from "@next/third-parties/google";
 import { Inter } from "next/font/google";
+import dynamic from "next/dynamic";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Footer from "./components/footer";
 import Navbar from "./components/navbar";
 import "./css/card.scss";
 import "./css/globals.scss";
-import ScrollToTop from "./components/helper/scroll-to-top";
 const inter = Inter({ subsets: ["latin"] });
+const ScrollToTop = dynamic(() => import('../app/components/helper/scroll-to-top'), { ssr: false });
 
 export const metadata = {
   title: "Portfolio of Steven Leal - Software Developer",
